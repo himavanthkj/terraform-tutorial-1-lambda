@@ -11,17 +11,17 @@ data "archive_file" "zip" {
   output_path = "hello_lambda.zip"
 }
 
+
+#Policy Document for Assuming Entitlement Role for Lambda
 data "aws_iam_policy_document" "policy" {
-  statement {
-    sid    = ""
-    effect = "Allow"
-
-    principals {
-      identifiers = ["lambda.amazonaws.com"]
-      type        = "Service"
-    }
-
+    statement {
+    sid = "1"  
     actions = ["sts:AssumeRole"]
+    effect = "Allow"
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
   }
 }
 
